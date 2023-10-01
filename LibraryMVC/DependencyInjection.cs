@@ -1,5 +1,4 @@
-﻿using LibraryMVC.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace LibraryMVC
 {

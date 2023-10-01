@@ -1,5 +1,6 @@
 ﻿using LibraryMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace LibraryMVC.Controllers
 {
@@ -11,6 +12,7 @@ namespace LibraryMVC.Controllers
         {
             _logger = logger;
         }
+
         [HttpGet]
         public IActionResult GetList()
         {
@@ -18,11 +20,25 @@ namespace LibraryMVC.Controllers
             return View(bookList);
         }
 
-        public IActionResult AddList()
+        public IActionResult LendIt(int id)
         {
-            return View();
+            var r = db.Book.Find(id);
+            return View(r);
         }
-        public IActionResult LendIt()
+        [HttpPost]
+        [ActionName("LendIt")]
+        public IActionResult LendIt(Book model)
+        {
+            model.AvaliableDate = DateTime.Now; // Varsayılan olarak 'Kind' özelliği 'Unspecified' olabilir
+            model.AvaliableDate = DateTime.SpecifyKind((DateTime)model.AvaliableDate, DateTimeKind.Utc); // 'Kind' özelliğini 'UTC' olarak ayarla
+
+            db.Book.Update(model);
+            db.SaveChanges();
+            return RedirectToAction("GetList", "Book");
+
+        }
+
+        public IActionResult AddBook()
         {
             return View();
         }

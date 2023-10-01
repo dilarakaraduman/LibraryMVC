@@ -1,29 +1,31 @@
 ﻿@model List<LibraryMVC.Models.Book>
-
-<form asp-controller="Book" asp-action="GetList" method="post">
-    <table class="table" style="width:100%;height:180px;background-color:#FDF5E6">
-        <thead>
-            <tr>
-                <th>Kitap Adı</th>
-                <th>Yazar Adı</th>
-                <th>Resim:</th>
-                <th>Müsait:</th>
-                <th>Ödünç Alan:</th>
-                <th>Müsaitlik Tarihi:</th>
-            </tr>
-        </thead>
-        @foreach (var book in Model){
+<table class="table" style="width:100%;height:200px;background-color:#FDF5E6">
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Yazar Adı</th>
+            <th>Resim:</th>
+            <th>Müsait:</th>
+            <th>Ödünç Alan:</th>
+            <th>Müsaitlik Tarihi:</th>
+        </tr>
+    </thead>
+    @foreach (var book in Model)
+    {
         <tr style="width:100%;background-color:#FFEBCD">
-                <td>@book.Name</td>
-                <td>@book.Writer</td>
-                <td>@(book.Image)</td>
-                <td>@book.IsInvisible</td>
-                <td>@book.Borrower</td>
-                <td>@(book.AvaliableDate?.ToShortDateString())</td>
+            <td>@book.Name</td>
+            <td>@book.Writer</td>
             <td>
-                    <a class="btn btn-info" style="width:30%;background-color:#f6e1c5" href="/LendIt/@book.Id">Ödünç Ver</a>
+                <img src="@book.Image"
+                 style="width:100px;height:120px" alt="Kitap Görseli">
+            </td>
+            <td>@book.IsInvisible</td>
+            <td>@book.Borrower</td>
+            <td>@(book.AvaliableDate)</td>
+            <td>
+                <a class="btn btn-info" style="width:60%;background-color:#f6e1c5" href="\Book/LendIt/@book.Id">Ödünç Ver</a>
             </td>
         </tr>
-        }
-    </table>
-</form>
+    }
+</table>
+

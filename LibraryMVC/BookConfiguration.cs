@@ -8,7 +8,7 @@ namespace LibraryMVC
 	{
 		public void Configure(EntityTypeBuilder<Book> builder)
 		{
-			//builder.ToTable("Book", DatabaseContext.DefaultSchema);
+			builder.ToTable("Book", DatabaseContext.DefaultSchema);
 			builder.HasKey(u=> u.Id);
 			builder.Property(b => b.Id).HasColumnType("int").IsRequired();
 			builder.Property(b => b.Name);

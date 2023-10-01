@@ -1,5 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model LibraryMVC.Models.Book
+@Html.HiddenFor(m=>m.Id)
+<form asp-controller="Book" asp-action="LendIt" method="post">
+
+    <table style="width:70%;height:100px;">
+        <thead style ="background-color:#FFEBCD">
+            <tr>
+                <th>Kitap Adı</th>
+                <td> <input asp-for="Name" /></td>
+            </tr>
+            <tr>
+                <th>Yazar Adı:</th>
+                <td> <input asp-for="Writer" /></td>
+            <tr>
+            <tr>
+                <th>Resim</th>
+                <td>
+                    <img src="@Model.Image"asp-for="Image"
+                         style="width:100px;height:120px" alt="Kitap Görseli">
+                </td>
+            </tr>
+            <tr>
+                <th>Müsaitlik Durumu:</th>
+                <td> <input asp-for="IsInvisible" /></td>
+            </tr>
+            <tr>
+                <th>Ödünç Alan Kişi:</th>
+                <td> <input asp-for="Borrower" /></td>
+            </tr>
+            <tr>
+                <th>Geri Getireceği Tarih:</th>
+                <td> <input asp-for="AvaliableDate" /></td>
+            </tr>
+
+    </table>
+    <br />
+    <button type="submit" style="width:60%;background-color:#f6e1c5" class="btn btn-primary">Kaydet</button>
+</form>
