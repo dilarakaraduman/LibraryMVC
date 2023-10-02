@@ -15,8 +15,8 @@ namespace LibraryMVC
 			builder.Property(b => b.Writer);
 			builder.Property(b => b.Image); 
 			builder.Property(b => b.IsInvisible);
-			builder.Property(b => b.Borrower);
-			builder.Property(b => b.AvaliableDate);
-		}
+			builder.Property(b => b.Borrower).IsRequired(false);
+            builder.Property(b => b.AvaliableDate).IsRequired(false);
+        }
 	}
 }

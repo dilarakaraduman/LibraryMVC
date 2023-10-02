@@ -1,10 +1,12 @@
 ﻿@model LibraryMVC.Models.Book
-@Html.HiddenFor(m=>m.Id)
-<div style="height:250px">
-    <form asp-controller="Book" asp-action="LendIt" method="post">
-
+<div style="height:230px">
+<form asp-controller="Book" asp-action="Create" method="post">
         <table style="width:70%;margin-top:-30px;">
             <thead style="background-color:#FFEBCD">
+                <tr>
+                    <th>Kitap Numarası</th>
+                    <td> <input asp-for="Id" /></td>
+                </tr>
                 <tr>
                     <th>Kitap Adı</th>
                     <td> <input asp-for="Name" /></td>
@@ -14,20 +16,12 @@
                     <td> <input asp-for="Writer" /></td>
                 <tr>
                 <tr>
-                    <th>Görsel</th>
+                    <th>Görsel<um>(Görsel linki veriniz)</um></th>
                     <td> <input asp-for="Image" /></td>
                 </tr>
                 <tr>
                     <th>Müsaitlik Durumu:<um>(Ödünç verilecek ise kutucuğu işaretleyin)</um></th>
                     <td> <input asp-for="IsInvisible" /></td>
-                </tr>
-                <tr>
-                    <th>Ödünç Alan Kişi:</th>
-                    <td> <input asp-for="Borrower" /></td>
-                </tr>
-                <tr>
-                    <th>Geri Getireceği Tarih:</th>
-                    <td> <input asp-for="AvaliableDate" /></td>
                 </tr>
 
         </table>
@@ -35,19 +29,21 @@
         <button type="submit" style="width:60%;background-color:#f6e1c5" class="btn btn-primary">Kaydet</button>
     </form>
 </div>
-  @if (TempData["ErrorMessage"] != null)
+
+
+    @if (TempData["ErrorMessage2"] != null)
     {
-        <div id="errorMessage" class="alert alert-danger custom-alert">
+        <div id="errorMessage2" class="alert alert-danger custom-alert">
             <div class="alert-content">
-                @TempData["ErrorMessage"]
+                @TempData["ErrorMessage2"]
             </div>
         </div>
     }
-   @if (TempData["ErrorMessage1"] != null)
+    @if (TempData["ErrorMessage3"] != null)
     {
-        <div id="errorMessage1" class="alert alert-danger custom-alert">
+        <div id="errorMessage3" class="alert alert-danger custom-alert">
             <div class="alert-content">
-                @TempData["ErrorMessage1"]
+                @TempData["ErrorMessage3"]
             </div>
         </div>
     }
@@ -77,10 +73,10 @@
             var fadeOutDuration = 1000; // 1000ms = 1 seconds (adjust as needed)
 
             setTimeout(function () {
-                fadeOut(errorMessage, fadeOutDuration);
+                fadeOut(errorMessage2, fadeOutDuration);
             }, fadeOutDelay);
             setTimeout(function () {
-                fadeOut(errorMessage1, fadeOutDuration);
+                fadeOut(errorMessage3, fadeOutDuration);
             }, fadeOutDelay);
 
             function fadeOut(element, duration) {
